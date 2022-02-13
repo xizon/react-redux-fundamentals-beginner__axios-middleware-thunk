@@ -4,48 +4,48 @@
 
 ---
 
-Redux +React + Axios - The process and principle of implementing SSR+ asynchronous request
+Redux +React + Axios - 实现SSR+异步请求的过程和原理
 
-## File Structures
+## 目录结构
 
 ```sh
 src/
 ├── reducers.js
 ├── createStore.js
 ├── getJSONData.js
-├── index.js (Entry file, for client/browser)
-└── App.js (React component，need to configure your own router)
+├── index.js (入口文件，用于客户端/浏览器)
+└── App.js (React组件，需要自己放到路由配置中)
 ```
 
-SSR Reference：
+SSR参考：
 ```sh
 src/server/ 
-└── server.js (For Express server-side rendering)
+└── server.js (用于Express服务端渲染)
 ```
 
-## Installation And Test
+## 安装调试
 
 
-**Step 1.** First, using an absolute path into your app folder directory.
+**Step 1.** 进入当前资源目录
 
 ```sh
 $ cd /{your_directory}/react-redux-fundamentals-beginner__axios-middleware-thunk
 ```
 
 
-**Step 2.** Before doing all dev stuff make sure you have `Node 14+` installed. After that, run the following code in the main directory to install the node module dependencies.
+**Step 2.** 确保安装了 `Node 14+` . 然后安装依赖项
 
 ```sh
 $ sudo npm install
 ```
 
-**Step 3.** Run this project with `create-react-app`
+**Step 3.** 使用 `create-react-app` 运行项目
 
 ```sh
 $ npm run start
 ```
 
-**Step 4.** When you done, this will spin up a server that can be accessed at
+**Step 4.** 运行命令后可以通过下面的地址访问：
 
 ```sh
 http://localhost:3000
@@ -98,7 +98,7 @@ ReactDOM.render(
 ```js
 
 // Reducer 1
-// Get http request asynchronously
+// 异步获取http请求
 //---------
 export default function theDefaultReducer(state = [], action) {
   switch (action.type) {
@@ -111,7 +111,7 @@ export default function theDefaultReducer(state = [], action) {
 }
 
 // Reducer 2
-// Counter reaction
+// 计数器加减
 //---------
 export function countReducer(state = {count: 0}, action) {
   switch (action.type) {
@@ -129,18 +129,23 @@ export function countReducer(state = {count: 0}, action) {
 
 
 // Reducer 3
-// Fixed value
+// 默认的固定数值
 //---------
 export const firstNamedReducer = (state = 1, action) => state
 
 // Reducer 4
-// Fixed value
+// 默认的固定数值
 //---------
 export const secondNamedReducer = (state = 2, action) => state
 
 ```
 
 ### createStore.js
+
+Redux Thunk中间件使您可以编写返回函数而不是操作的操作创建者。重击程序可用于延迟操作的分发，或者仅在满足特定条件时调度。内部函数接收存储方法dispatch和getState作为参数。
+如您所见，它将返回一个函数而不是一个动作，这意味着您可以随时等待并调用它，因为它是一个函数。
+
+Middleware 中间件它在 dispatch action 和到达 reducer 的那一刻之间提供了逻辑插入点。可以使用 Redux 中间件进行日志记录、异常监控、与异步 API 对话、路由等。
 
 ```js
 import { combineReducers, createStore, applyMiddleware } from 'redux';
@@ -221,6 +226,10 @@ export default getJSONData;
 ```
 
 ### App.js
+
+React-Redux是Redux的官方React绑定库。它能够使你的React组件从Redux store中读取数据，并且向store分发actions以更新数据。
+
+它提供connect方法，用于从UI 组件生成容器组件。 connect的意思，就是将这两种组件连起来。 export default connect(mapStateToProps, mapDispatchToProps)(AppUI);
 
 ```js
 import React, { Component } from 'react';
@@ -305,9 +314,9 @@ export default connect(
 )(App);
 ```
 
-### server/server.js 【Reference】
+### server/server.js 【参考】
 
-Note: You can also encapsulate `axios` as an **action creator** file and export, this **action creator** can be used in `App.js` (the component can be accessed by router, so it can also access the asynchronous request method you created in the component)
+提示：你也可以将这里的axios方法封装成一个action creator单独export，这个action creator可以放到App.js中使用（组件可以被路由访问到，所以也可以访问到你在组件中创建的异步请求方法
 
 ```js
 import express from 'express';

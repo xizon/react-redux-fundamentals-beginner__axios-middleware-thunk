@@ -1,3 +1,7 @@
+/*
+Note: You can also encapsulate `axios` as an **action creator** file and export, this **action creator** can be used in `App.js` (the component can be accessed by router, so it can also access the asynchronous request method you created in the component)
+*/
+
 import express from 'express';
 import axios from 'axios';
 
