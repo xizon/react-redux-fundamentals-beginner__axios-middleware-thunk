@@ -1,6 +1,6 @@
 
 // Reducer 1
-// 异步获取http请求
+// Get http request asynchronously
 //---------
 export default function theDefaultReducer(state = [], action) {
   switch (action.type) {
@@ -13,7 +13,7 @@ export default function theDefaultReducer(state = [], action) {
 }
 
 // Reducer 2
-// 计数器加减
+// Counter reaction
 //---------
 export function countReducer(state = {count: 0}, action) {
   switch (action.type) {
@@ -31,11 +31,11 @@ export function countReducer(state = {count: 0}, action) {
 
 
 // Reducer 3
-// 默认的固定数值
+// Fixed value
 //---------
 export const firstNamedReducer = (state = 1, action) => state
 
 // Reducer 4
-// 默认的固定数值
+// Fixed value
 //---------
 export const secondNamedReducer = (state = 2, action) => state

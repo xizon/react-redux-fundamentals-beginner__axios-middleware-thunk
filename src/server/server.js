@@ -1,7 +1,3 @@
-/*
-提示：你也可以将这里的axios方法封装成一个action creator单独export，这个action creator可以放到App.js中使用（组件可以被路由访问到，所以也可以访问到你在组件中创建的异步请求方法
-*/
-
 import express from 'express';
 import axios from 'axios';
 
